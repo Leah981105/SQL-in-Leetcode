@@ -19,7 +19,7 @@ The query result format is in the following example.
 
 ### Answer
 
-```
+```sql
 CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT 
 BEGIN
     SET N = N-1;
