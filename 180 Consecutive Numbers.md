@@ -43,7 +43,7 @@ Explanation: 1 is the only number that appears consecutively for at least three 
 ### Answer
 
 - 1. 保持Num顺序不变, 用row_number() partition by num order by id计算出每个出现的num组中的子排序
-```
+```sql
 SELECT Id,Num,
 	ROW_NUMBER() over(partition by Num order by Id) as SerialGroup
 FROM ContinueNumber
@@ -55,7 +55,7 @@ FROM ContinueNumber
 
 - 2. 可以发现, id-子排序的结果,如果一致,说明是连续出现的num
 
-```
+```sql
 SELECT Id,Num,
       row_number() over(order by id) -
       row_number() over(partition by Num order by Id) as SerialNumberSubGroup
@@ -67,7 +67,7 @@ FROM ContinueNumber
 
 - 3. 最后选取count(id)大于等于3次的num, 输出即可, 注意group by num 和 SerialNumberSubGroup, 因为id是distinct的, 可以进行count
 
-```
+```sql
 SELECT DISTINCT Num ConsecutiveNums FROM 
 	(SELECT Id,Num,
 		row_number() over(order by id) -
