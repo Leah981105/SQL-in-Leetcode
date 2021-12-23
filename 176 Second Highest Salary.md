@@ -20,7 +20,7 @@ Write an SQL query to report the second highest salary from the Employee table. 
 ### Answer
 
 - Solution 1
-```
+```sql
 SELECT
     (SELECT DISTINCT
             Salary
@@ -33,7 +33,7 @@ SELECT
 
 - Solution 2
 IFNULL()函数
-```
+```sql
 SELECT
     IFNULL(
       (SELECT DISTINCT Salary
