@@ -73,3 +73,12 @@ having sum(sale_date not between '2019-01-01' and '2019-03-31') = 0  # sum()是�
 ```
 
 
+##### 可以用sum()+条件, 计算比例, 例如点击率, 转化率
+
+```sql
+select ad_id,
+ifnull(round(sum(action="Clicked")/sum(action<>"Ignored")*100,2),0.00) as ctr
+from ads
+group by ad_id
+order by ctr desc,ad_id 
+```
