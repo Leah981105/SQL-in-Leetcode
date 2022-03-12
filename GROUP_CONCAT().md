@@ -63,10 +63,10 @@ For 2020-06-02, the Sold item is (Mask), we just return it.
 ```sql
 select sell_date,
     count(distinct product) num_sold,
-    group_concat(distinct product) products # concat distinct product group by sell_date
+    group_concat(distinct product order by product separator ',') products
 from Activities 
 group by sell_date
-order by sell_date, product # order the concat order alphabatically
+order by sell_date, product
 
 ```
 
